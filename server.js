@@ -1,23 +1,16 @@
 const express = require('express');
-const mysql = require('mysql2');
-const { devNull } = require('os');
+const db = require('./db/connection');
 const inputCheck = require('./utils/inputCheck');
+const apiRoutes = require('./routes/apiRoutes');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use('/api', apiRoutes);
 
 
 
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '!c3hOckey',
-    database: 'election'
-
-},
-console.log('Connected to the election database.'))
 
 // Get all candidates
 
